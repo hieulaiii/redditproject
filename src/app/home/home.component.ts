@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { PostModel } from '../shared/post-model';
+import { PostService } from '../shared/post.service';
 
 @Component({
   selector: 'app-home',
@@ -9,38 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public trendingMovies: any;
-  public theatreMovies: any;
-  public popularMovies: any;
+  posts: Array<PostModel> = [];
 
-  constructor(private http: HttpClient, private router: Router){}
-
-  ngOnInit(): void{
-    this.getTrendingMovies()
-    this.getTheatreMovies()
-    this.getPopularMovies()
-
+  constructor(private postService: PostService) {
+    this.postService.getAllPosts().subscribe(post => {
+      this.posts = post;
+    });
   }
 
-  getTrendingMovies(){
-    this.http.get('http://localhost:4200/assets/data/trending-movies.json').subscribe(movies =>{
-      this.trendingMovies = movies
-    })
+  ngOnInit(): void {
   }
 
-  getTheatreMovies(){
-    this.http.get('http://localhost:4200/assets/data/theatre-movies.json').subscribe(movies =>{
-      this.theatreMovies = movies
-    })
-  }
-
-  getPopularMovies(){
-    this.http.get('http://localhost:4200/assets/data/popular-movies.json').subscribe(movies =>{
-      this.popularMovies = movies
-    })
-  }
-
-  gotoMovie(type: string, id: string){
-    this.router.navigate(['/movie', type, id])
-  }
 }

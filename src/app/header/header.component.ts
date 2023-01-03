@@ -1,25 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../auth/shared/auth.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
+  faUser = faUser;
+  isLoggedIn: boolean = false
+  username: string = ''
 
-  constructor(private router: Router, private auth: AuthService){}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void{
-
+  ngOnInit() {
+    this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
+    this.authService.username.subscribe((data: string) => this.username = data);
+    this.isLoggedIn = this.authService.isLoggedIn();
+    this.username = this.authService.getUserName();
   }
 
-  public goToHome(){
-    this.router.navigate(['home'])
+  goToUserProfile() {
+    this.router.navigateByUrl('/user-profile/' + this.username);
   }
 
-  public logout(){
-    this.auth.logout()
+  logout() {
+    this.authService.logout();
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('');
   }
 }
