@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
       if(data){
         this.isError = false;
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('')
         this.toastr.success('Login Successful')
       } else {
         this.isError = true
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       }
 
     }, () => {
-      this.toastr.error('fsd')
+      this.toastr.error('Login Failed, Please try again')
     })
   }
 }

@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit {
 
     this.authService.signup(this.signupRequestPayload)
     .subscribe(() => {
+      this.toastr.success('Sign up successfully!')
       this.router.navigate(['/login'],
       { queryParams: { register: 'true' }})
     }, () => {

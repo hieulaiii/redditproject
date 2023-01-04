@@ -11,10 +11,10 @@ import { throwError } from 'rxjs';
   styleUrls: ['./create-subreddit.component.scss']
 })
 export class CreateSubredditComponent implements OnInit {
-  createSubredditForm: FormGroup;
-  subredditModel: SubredditModel;
-  title = new FormControl('');
-  description = new FormControl('');
+  public createSubredditForm: FormGroup;
+  public subredditModel: SubredditModel;
+  public title = new FormControl('');
+  public description = new FormControl('');
 
   constructor(private router: Router, private subredditService: SubredditService) {
     this.createSubredditForm = new FormGroup({
@@ -31,14 +31,13 @@ export class CreateSubredditComponent implements OnInit {
   }
 
   discard() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('');
   }
 
   createSubreddit() {
     this.subredditModel.name = this.createSubredditForm.get('title')?.value
     this.subredditModel.description = this.createSubredditForm.get('description')?.value
     console.log(this.subredditModel.name);
-
 
     this.subredditService.createSubreddit(this.subredditModel).subscribe(data => {
       this.router.navigateByUrl('/list-subreddits');

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SubredditModel } from './subreddit-response';
 
@@ -7,10 +7,16 @@ import { SubredditModel } from './subreddit-response';
   providedIn: 'root'
 })
 export class SubredditService {
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+
   constructor(private http: HttpClient) { }
 
   getAllSubreddits(): Observable<Array<SubredditModel>> {
-    return this.http.get<Array<SubredditModel>>('http://localhost:8080/api/subreddit/');
+    return this.http.get<Array<SubredditModel>>('http://localhost:8080/api/subreddit/',this.httpOptions);
   }
 
   createSubreddit(subredditModel: SubredditModel): Observable<SubredditModel> {
