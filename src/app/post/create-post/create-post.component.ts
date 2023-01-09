@@ -35,6 +35,7 @@ export class CreatePostComponent implements OnInit {
       url: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
+
     this.subredditService.getAllSubreddits().subscribe((data) => {
       this.subreddits = data;
     }, error => {

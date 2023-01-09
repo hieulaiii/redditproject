@@ -13,8 +13,8 @@ import { LoginRequestPayload } from './login-request.payload';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup | any
-  public isError: boolean | any
   public loginRequestPayload: LoginRequestPayload
+  public isError: boolean | any
   public registerSuccessMessage: string = ''
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,

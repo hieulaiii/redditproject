@@ -34,6 +34,7 @@ export class CreateSubredditComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
+  debugger: any;
   createSubreddit() {
     this.subredditModel.name = this.createSubredditForm.get('title')?.value
     this.subredditModel.description = this.createSubredditForm.get('description')?.value

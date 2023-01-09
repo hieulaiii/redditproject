@@ -1,6 +1,11 @@
 header{
   border-radius: 1px solid;
 }
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+}
 .reddit-icon-svg{
   height: 60px;
   padding: 8px 8px 8px 0;
