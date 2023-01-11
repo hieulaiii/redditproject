@@ -11,7 +11,8 @@ import { throwError } from 'rxjs';
 export class ListSubredditsComponent implements OnInit {
 
   public subreddits: Array<SubredditModel> | any
-  constructor(private subredditService: SubredditService) { }
+  constructor(private subredditService: SubredditService) {
+  }
 
   ngOnInit() {
     this.subredditService.getAllSubreddits().subscribe(data => {
@@ -20,4 +21,5 @@ export class ListSubredditsComponent implements OnInit {
       throwError(error);
     })
   }
+
 }

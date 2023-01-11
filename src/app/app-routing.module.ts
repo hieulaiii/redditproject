@@ -12,15 +12,15 @@ import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subred
 import { ViewSubredditComponent } from './subreddit/view-subreddit/view-subreddit.component';
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
+  { path:'', component: HomeComponent },
   { path: 'view-post/:id', component: ViewPostComponent },
   { path: 'view-subreddit/:id', component: ViewSubredditComponent },
   { path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard] },
-  {path:'list-subreddits', component: ListSubredditsComponent},
-  {path:'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},
-  {path:'create-subreddit', component: CreateSubredditComponent, canActivate: [AuthGuard]},
-  {path:'sign-up', component: SignupComponent},
-  {path:'login', component: LoginComponent}
+  { path:'list-subreddits', component: ListSubredditsComponent },
+  { path:'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+  { path:'create-subreddit', component: CreateSubredditComponent, canActivate: [AuthGuard] },
+  { path:'sign-up', component: SignupComponent },
+  { path:'login', component: LoginComponent }
 ];
 
 @NgModule({

@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe(params => {
       if(params['registered'] !== undefined && params['registered'] === 'true'){
-        this.toastr.success('Signup Successful')
-        this.registerSuccessMessage = 'Please check your inbox  for activate' + 'activate your account before Login!'
+        this.toastr.success('Signup Successful');
+        // this.registerSuccessMessage = 'Please check your inbox  for activate' + 'activate your account before Login!';
       }
     })
   }
@@ -41,19 +41,19 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.loginRequestPayload.username = this.loginForm.get('username').value
-    this.loginRequestPayload.password = this.loginForm.get('password').value
+    this.loginRequestPayload.username = this.loginForm.get('username').value;
+    this.loginRequestPayload.password = this.loginForm.get('password').value;
 
     this.authService.login(this.loginRequestPayload).subscribe(data => {
       console.log('successfully');
 
       if(data){
         this.isError = false;
-        this.router.navigateByUrl('')
-        this.toastr.success('Login Successful')
+        this.router.navigateByUrl('');
+        this.toastr.success('Login Successful');
       } else {
-        this.isError = true
-        this.registerSuccessMessage = 'Login failed'
+        this.isError = true;
+        this.registerSuccessMessage = 'Login failed';
       }
 
     }, () => {
